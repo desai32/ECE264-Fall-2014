@@ -57,9 +57,6 @@ int main(int argc, char * * argv)
     {
       char buffer[2001];
       string = stdin;
-	printf("%d", invert1);
-	printf("%d", quiet);
-	printf("%d", line_number);
       while (fgets(buffer, 2001, string) != NULL)
 	{
 	new_counter++;

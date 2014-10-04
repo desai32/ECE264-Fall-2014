@@ -5,8 +5,20 @@
 int main(int argc, char * * argv)
 {
 int lcv;
-
-
+FILE * file_ptr1;
+char cpy_string1;
+if (argc == 1)
+{
+file_ptr1 = stdin;
+while(feof(file_ptr1) == 0)
+{
+cpy_string1 = fgetc(file_ptr1);
+if (feof(file_ptr1) == 0)
+{
+printf("%c", cpy_string1);
+}
+}
+}
 for (lcv = 1; lcv < argc; lcv++)
 {
 if (strcmp(argv[lcv], "--help") == 0)

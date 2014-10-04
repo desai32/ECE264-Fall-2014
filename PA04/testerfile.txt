@@ -1,0 +1,301 @@
+   ---------------------------------------------------------------------------
+   Welcome to the PA04 testing program. This program takes a _long_ time
+   to execute. There is a reason for this. You should not rely on this
+   program to test your code as you go. Instead, you should think about
+   what your code should be doing, and what inputs should produce what
+   outputs for each of your functions.
+   
+        YOU SHOULD THEN TEST EVERY PIECE OF CODE AS YOU WRITE IT 
+   
+                                 AND 
+   
+                        FIX MISTAKES AS YOU GO.
+   
+   When you are convinced that you have the entire assignment 100% correct,
+   then you can use this testing program to test it. 
+   
+   This will give you your mark assuming that you submit it correctly, and 
+   there are no other irregularities.
+   ---------------------------------------------------------------------------
+gcc -Wall -Wshadow -g echo-lite.c -o echo-lite
+Compilation successful.
+
+gcc -Wall -Wshadow -g cat-lite.c -o cat-lite
+Compilation successful.
+
+gcc -Wall -Wshadow -g grep-lite.c -o grep-lite
+Compilation successful.
+
+
+Testcase 1
+   ./echo-lite Say cheese
+   Say cheese
+Testcase passed.
+
+Testcase 2
+   ./echo-lite
+   
+Testcase passed.
+
+Testcase 3
+   ./echo-lite a b c
+   a b c
+Testcase passed.
+
+Testcase 4
+   ./echo-lite note that    multiple space becomes 1.
+   note that multiple space becomes 1.
+Testcase passed.
+
+Testcase 5
+   ./echo-lite but you can use " quotes " to pass along spaces.
+   but you can use  quotes  to pass along spaces.
+Testcase passed.
+
+Testcase 6
+   ./cat-lite --help
+   Usage: cat-lite [--help] [FILE]...
+   With no FILE, or when FILE is -, read standard input.
+   
+   Examples:
+   cat-lite README   Print the file README to standard output.
+   cat-lite f - g    Print f's contents, then standard input,
+   then g's contents.
+   cat-lite          Copy standard input to standard output.
+Testcase passed.
+
+Testcase 7
+   ./cat-lite --help still happens if trailing arguments
+   Usage: cat-lite [--help] [FILE]...
+   With no FILE, or when FILE is -, read standard input.
+   
+   Examples:
+   cat-lite README   Print the file README to standard output.
+   cat-lite f - g    Print f's contents, then standard input,
+   then g's contents.
+   cat-lite          Copy standard input to standard output.
+Testcase passed.
+
+Testcase 8
+   ./cat-lite testcases/file1
+   meow
+Testcase passed.
+
+Testcase 9
+   ./cat-lite testcases/file2
+   
+Testcase passed.
+
+Testcase 10
+   ./cat-lite testcases/file1 testcases/file1
+   meow
+   meow
+Testcase passed.
+
+Testcase 11
+   ./cat-lite testcases/file3 testcases/file4
+   I would not like them here or there.
+   I would not like them anywhere.
+   I do not like green eggs and ham.
+   I do not like them, Sam-I-Am.
+   Say! I like green eggs and ham!
+   I do! I like them, Sam-I-Am!
+   And I would eat them in a boat.
+   And I would eat them with a goat...
+   And I will eat them, in the rain.
+   And in the dark. And on a train.
+   And in a car. And in a tree.
+   They are so good, so good, you see!
+   So I will eat them in a box.
+   And I will eat them with a fox.
+   And I will eat them in a house.
+   And I will eat them with a mouse.
+   And I will eat them here and there.
+   Say! I will eat them anywhere!
+   I do so like green eggs and ham!
+   Thank you! Thank you, Sam-I-Am.
+Testcase passed.
+
+Testcase 12
+   echo stdin | ./cat-lite
+ERROR in stdout output. Expected:
+   stdin
+Testcase FAILED
+
+Testcase 13
+   echo stdin | ./cat-lite -
+   stdin
+Testcase passed.
+
+Testcase 14
+   echo ... | ./cat-lite testcases/file3 - testcases/file4
+   I would not like them here or there.
+   I would not like them anywhere.
+   I do not like green eggs and ham.
+   I do not like them, Sam-I-Am.
+   ...
+   Say! I like green eggs and ham!
+   I do! I like them, Sam-I-Am!
+   And I would eat them in a boat.
+   And I would eat them with a goat...
+   And I will eat them, in the rain.
+   And in the dark. And on a train.
+   And in a car. And in a tree.
+   They are so good, so good, you see!
+   So I will eat them in a box.
+   And I will eat them with a fox.
+   And I will eat them in a house.
+   And I will eat them with a mouse.
+   And I will eat them here and there.
+   Say! I will eat them anywhere!
+   I do so like green eggs and ham!
+   Thank you! Thank you, Sam-I-Am.
+Testcase passed.
+
+Testcase 15
+   cat testcases/file3 | ./grep-lite ham
+ERROR in stdout output. Expected:
+   I do not like green eggs and ham.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 16
+   cat testcases/file3 | ./grep-lite -v ham
+ERROR in stdout output. Expected:
+   I would not like them here or there.
+   I would not like them anywhere.
+   I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 17
+   cat testcases/file3 | ./grep-lite -n ham
+ERROR in stdout output. Expected:
+   3:I do not like green eggs and ham.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 18
+   cat testcases/file3 | ./grep-lite -n -v ham
+ERROR in stdout output. Expected:
+   1:I would not like them here or there.
+   2:I would not like them anywhere.
+   4:I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 19
+   cat testcases/file3 | ./grep-lite -v -n ham
+ERROR in stdout output. Expected:
+   1:I would not like them here or there.
+   2:I would not like them anywhere.
+   4:I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 20
+   cat testcases/file3 | ./grep-lite -q ham
+   Aborting... 
+ERROR with exit status. Expected 0, but got 2.
+Testcase FAILED
+
+Testcase 21
+   cat testcases/file3 | ./grep-lite -q -n ham
+   Aborting... 
+ERROR with exit status. Expected 0, but got 2.
+Testcase FAILED
+
+Testcase 22
+   cat testcases/file3 | ./grep-lite -n -q ham
+   Aborting... 
+ERROR with exit status. Expected 0, but got 2.
+Testcase FAILED
+
+Testcase 23
+   cat testcases/file3 | ./grep-lite -q -v ham
+   Aborting... 
+ERROR with exit status. Expected 0, but got 2.
+Testcase FAILED
+
+Testcase 24
+   cat testcases/file3 | ./grep-lite -v -v ham
+ERROR in stdout output. Expected:
+   I would not like them here or there.
+   I would not like them anywhere.
+   I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 25
+   cat testcases/file3 | ./grep-lite ham
+ERROR in stdout output. Expected:
+   I do not like green eggs and ham.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 26
+   cat testcases/file3 | ./grep-lite --invert-match ham
+ERROR in stdout output. Expected:
+   I would not like them here or there.
+   I would not like them anywhere.
+   I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 27
+   cat testcases/file3 | ./grep-lite --line-number ham
+ERROR in stdout output. Expected:
+   3:I do not like green eggs and ham.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 28
+   cat testcases/file3 | ./grep-lite --line-number --invert-match ham
+ERROR in stdout output. Expected:
+   1:I would not like them here or there.
+   2:I would not like them anywhere.
+   4:I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 29
+   cat testcases/file3 | ./grep-lite --invert-match --line-number ham
+ERROR in stdout output. Expected:
+   1:I would not like them here or there.
+   2:I would not like them anywhere.
+   4:I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 30
+   cat testcases/file3 | ./grep-lite --quiet ham
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 31
+   cat testcases/file3 | ./grep-lite --quiet --line-number ham
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 32
+   cat testcases/file3 | ./grep-lite --line-number --quiet ham
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 33
+   cat testcases/file3 | ./grep-lite --quiet --invert-match ham
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+Testcase 34
+   cat testcases/file3 | ./grep-lite --invert-match --invert-match ham
+ERROR in stdout output. Expected:
+   I would not like them here or there.
+   I would not like them anywhere.
+   I do not like them, Sam-I-Am.
+ERROR with exit status. Expected 0, but got 1.
+Testcase FAILED
+
+
+13/34 testcases passed.
+Overall mark is a FAIL.

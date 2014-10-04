@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define TRUE 1; 
+#define FALSE 0;
+
+int main(int argc, char * * argv)
+{
+FILE * string;
+int abort = FALSE;
+int invert = FALSE;
+int line_number = FALSE;
+int quiet = FALSE;
+int match = FALSE;
+int badswitch = FALSE;
+int lcv;
+for (lcv = 1; lcv < argc; lcv++)
+{
+if (strcmp(argv[lcv], "--help") == 0)
+{
+printf("<help-message>\nUsage: grep-lite [OPTION]... PATTERN\nSearch for PATTERN in standard input. PATTERN is a\nstring. grep-lite will search standard input line by\nline, and (by default) print out those lines which\ncontain pattern as a substring.\n\n-v, --invert-match     print non-matching lines\n-n, --line-number      print line numbers with output\n-q, --quiet            suppress all output\n\nExit status is 0 if any line is selected, 1 otherwise;\nif any error occurs, then the exit status is 2.\n</help-message>\n");
+return EXIT_SUCCESS;
+}
+}
+int index;
+for(index = 1; index < argc; index++)
+{
+if (strcmp(argv[index], "-v") || strcmp(argv[index], "--invert-match") == 0)
+{
+invert = TRUE;
+}
+if (strcmp(argv[index], "-n") || strcmp(argv[index], "--line-number") == 0)
+{
+line_number = TRUE;
+}
+if (strcmp(argv[index], "-q") || strcmp(argv[index], "--quiet") == 0)
+{
+quiet = TRUE;
+}
+else 
+{
+badswitch = TRUE;
+}
+if(strchr(argv[argc - 1], "-") != NULL)
+{
+abort = TRUE;
+return 2;
+}
+
+
+}
+if (!badswitch) //(badswitch == FALSE)
+{
+char buffer[2001];
+string = stdin;
+if (string == NULL)
+{
+fprintf(stderr,"Error cannot print\n");
+return EXIT_FAILURE;
+}
+while (feof(string) == 0)
+{
+fgets(buffer, 2001, string);
+if (feof(string) == 0)
+{
+if (strstr(buffer, argv[argc -1]) == NULL)
+{
+}
+else 
+{
+
+
+//printf("%s", buffer);
+}
+}
+}
+
+
+if (badswitch)
+{
+fprintf(stderr, "Aborting... \n");
+return 2;
+}
+
+
+return EXIT_SUCCESS;
+}
+
