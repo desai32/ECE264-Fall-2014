@@ -1,50 +1,63 @@
 #include <stdio.h>
 #include "answer06.h"
-
-void * recursive(char * * maze, int w, int h, int x, int y)
+int entrancepoint(char * *, int, int);
+void recursive(char * *, int, int, int, int);
+void recursive(char * * maze, int w, int h, int x, int y)
 {
-if (maze[x + 1][y] = ' ' &&  x < w - 1 && x >= 0)
+int i;
+for (i = 0; i < 4; i++)
 {
-printf("S %d",1); 
-recursive(maze, w, h, x + 1, y); 
-printf("N %d",1);
+if (x - 1 >= 0 && x < h -1 && maze[x + 1][y] == ' ' && i == 0)
+{
+maze[x][y] = '.';
+printf("S 1\n"); 
+recursive(maze, w, h, x + 1, y);
+maze[x][y] = ' '; 
+printf("N 1\n");
 }
-else if (maze[x - 1][y] = ' ' && x < w - 1 && x >= 0)
+if (x - 1 >= 0 && x < h - 1 && maze[x - 1][y] == ' ' && i == 1)
 {
-printf("N %d",1);
+maze[x][y] = '.';
+printf("N 1\n");
 recursive(maze, w, h, x - 1, y);
-printf("S %d",1); 
+maze[x][y] = ' ';
+printf("S 1\n"); 
 }
-else if (maze[x][y + 1] = ' ' && y < h - 1 && y >= 0)
+if (y -1  >= 0 && y < w - 1 && maze[x][y + 1] == ' ' && i == 2)
 {
-printf("E %d",1);
+maze[x][y] = '.';
+printf("E 1\n");
 recursive(maze, w, h, x, y + 1);
-printf("W %d",1);
+maze[x][y] = ' ';
+printf("W 1\n");
 }
-else (maze[x][y - 1] = ' ' && y < h - 1 && y >= 0)
+if (y - 1 >= 0 && y < w - 1 && maze[x][y - 1] == ' ' && i == 3)
 {
-printf("W %d",1);
+maze[x][y] = '.';
+printf("W 1\n");
 recursive(maze, w, h, x, y - 1);
-printf("E %d",1);
+maze[x][y] = ' ';
+printf("E 1\n");
+}
 }
 return; 
 }
 int entrancepoint(char * * maze, int w, int h) 
 {
-int i = 0;
-int j;
-while (maze[0][i] != '\0')
+int i;
+for (i = 0; i < h; i++)
 {
 if (maze[0][i] == ' ')
 {
 return i;
 }
-i++;
 }
+return 0;
 }
 void print_directions(char * * maze, int w, int h)
 {
 int y = entrancepoint(maze, w, h);
 int x = 0;
 recursive(maze, w, h, x, y);
+return;
 }
