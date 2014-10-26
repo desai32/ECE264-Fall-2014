@@ -1,0 +1,12 @@
+
+/**
+ * Testcase 11 :: images/02-cat-chess.ee264 
+ * Test reading ee264 format
+ */
+Attempt to read 'images/02-cat-chess.ee264' as .ee264 format
+   Program received signal SIGSEGV, Segmentation fault.
+   __strend_sse4 () at ../sysdeps/x86_64/multiarch/strend-sse4.S:30
+   30		pcmpeqb	(%rdi), %xmm2
+   #0  __strend_sse4 () at ../sysdeps/x86_64/multiarch/strend-sse4.S:30
+   #1  0x0000000000400c4d in Image_load (filename=0x7fffffffe803 "images/02-cat-chess.ee264") at answer07.c:68
+   #2  0x000000000040197d in main (argc=3, argv=0x7fffffffe4b8) at <stdin>:61

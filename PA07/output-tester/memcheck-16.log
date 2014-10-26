@@ -1,0 +1,83 @@
+==36867== Memcheck, a memory error detector
+==36867== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==36867== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==36867== Command: ./a.out images/corrupt-testcases/02-check-magic-number.ee264 student-out-16_-
+==36867== Parent PID: 36866
+==36867== 
+--36867-- 
+--36867-- Valgrind options:
+--36867--    --tool=memcheck
+--36867--    --leak-check=full
+--36867--    --verbose
+--36867--    --log-file=memcheck-16.log
+--36867-- Contents of /proc/version:
+--36867--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--36867-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--36867-- Page sizes: currently 4096, max supported 4096
+--36867-- Valgrind library directory: /usr/lib64/valgrind
+--36867-- Reading syms from /tmp/.h3jkwG/a.out
+--36867-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--36867--    object doesn't have a dynamic symbol table
+--36867-- Reading syms from /lib64/ld-2.12.so
+--36867--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--36867--   .. build-id is valid
+--36867-- Scheduler: using generic scheduler lock implementation.
+--36867-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==36867== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-36867-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==36867== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-36867-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==36867== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-36867-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==36867== 
+==36867== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==36867== don't want to do, unless you know exactly what you're doing,
+==36867== or are doing some strange experiment):
+==36867==   /usr/lib64/valgrind/../../bin/vgdb --pid=36867 ...command...
+==36867== 
+==36867== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==36867==   /path/to/gdb ./a.out
+==36867== and then give GDB the following command
+==36867==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=36867
+==36867== --pid is optional if only one valgrind process is running
+==36867== 
+--36867-- REDIR: 0x398ac17610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--36867-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--36867-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--36867-- REDIR: 0x398ac17480 (index) redirected to 0x4a07c30 (index)
+--36867-- REDIR: 0x398ac17500 (strcmp) redirected to 0x4a08570 (strcmp)
+--36867-- Reading syms from /lib64/libc-2.12.so
+--36867--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--36867--   .. build-id is valid
+--36867-- REDIR: 0x398b084cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--36867-- REDIR: 0x398b086f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--36867-- REDIR: 0x398b082c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--36867-- REDIR: 0x398b07f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--36867-- REDIR: 0x398b128420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--36867-- REDIR: 0x398b081120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--36867-- REDIR: 0x398b1336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--36867-- REDIR: 0x398b08aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--36867-- REDIR: 0x398b084500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--36867-- REDIR: 0x398b07b520 (free) redirected to 0x4a063a9 (free)
+--36867-- REDIR: 0x398b07a640 (malloc) redirected to 0x4a069ac (malloc)
+--36867-- REDIR: 0x398b089670 (memcpy) redirected to 0x4a08b60 (memcpy)
+==36867== 
+==36867== HEAP SUMMARY:
+==36867==     in use at exit: 568 bytes in 1 blocks
+==36867==   total heap usage: 1 allocs, 0 frees, 568 bytes allocated
+==36867== 
+==36867== Searching for pointers to 1 not-freed blocks
+==36867== Checked 69,136 bytes
+==36867== 
+==36867== LEAK SUMMARY:
+==36867==    definitely lost: 0 bytes in 0 blocks
+==36867==    indirectly lost: 0 bytes in 0 blocks
+==36867==      possibly lost: 0 bytes in 0 blocks
+==36867==    still reachable: 568 bytes in 1 blocks
+==36867==         suppressed: 0 bytes in 0 blocks
+==36867== Reachable blocks (those to which a pointer was found) are not shown.
+==36867== To see them, rerun with: --leak-check=full --show-reachable=yes
+==36867== 
+==36867== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--36867-- 
+--36867-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--36867-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==36867== 
+==36867== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

@@ -1,0 +1,139 @@
+==26222== Memcheck, a memory error detector
+==26222== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==26222== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==26222== Command: ./a.out images/corrupt-testcases/09-incomplete-image.ee264 student-out-23_-
+==26222== Parent PID: 26208
+==26222== 
+--26222-- 
+--26222-- Valgrind options:
+--26222--    --tool=memcheck
+--26222--    --leak-check=full
+--26222--    --verbose
+--26222--    --log-file=memcheck-23.log
+--26222-- Contents of /proc/version:
+--26222--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--26222-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--26222-- Page sizes: currently 4096, max supported 4096
+--26222-- Valgrind library directory: /usr/lib64/valgrind
+--26222-- Reading syms from /tmp/.BmAiaV/a.out
+--26222-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--26222--    object doesn't have a dynamic symbol table
+--26222-- Reading syms from /lib64/ld-2.12.so
+--26222--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--26222--   .. build-id is valid
+--26222-- Scheduler: using generic scheduler lock implementation.
+--26222-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==26222== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-26222-by-desai32-on-ecegrid-thin2.ecn.purdue.edu
+==26222== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-26222-by-desai32-on-ecegrid-thin2.ecn.purdue.edu
+==26222== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-26222-by-desai32-on-ecegrid-thin2.ecn.purdue.edu
+==26222== 
+==26222== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==26222== don't want to do, unless you know exactly what you're doing,
+==26222== or are doing some strange experiment):
+==26222==   /usr/lib64/valgrind/../../bin/vgdb --pid=26222 ...command...
+==26222== 
+==26222== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==26222==   /path/to/gdb ./a.out
+==26222== and then give GDB the following command
+==26222==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=26222
+==26222== --pid is optional if only one valgrind process is running
+==26222== 
+--26222-- REDIR: 0x30c8e17610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--26222-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--26222-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--26222-- REDIR: 0x30c8e17480 (index) redirected to 0x4a07c30 (index)
+--26222-- REDIR: 0x30c8e17500 (strcmp) redirected to 0x4a08570 (strcmp)
+--26222-- Reading syms from /lib64/libc-2.12.so
+--26222--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--26222--   .. build-id is valid
+--26222-- REDIR: 0x30c9284cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26222-- REDIR: 0x30c9286f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26222-- REDIR: 0x30c9282c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--26222-- REDIR: 0x30c927f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26222-- REDIR: 0x30c9328420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--26222-- REDIR: 0x30c9281120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26222-- REDIR: 0x30c93336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--26222-- REDIR: 0x30c928aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--26222-- REDIR: 0x30c9284500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--26222-- REDIR: 0x30c927b520 (free) redirected to 0x4a063a9 (free)
+--26222-- REDIR: 0x30c927a640 (malloc) redirected to 0x4a069ac (malloc)
+--26222-- REDIR: 0x30c9289670 (memcpy) redirected to 0x4a08b60 (memcpy)
+==26222== Invalid write of size 8
+==26222==    at 0x4A08D53: memcpy (mc_replace_strmem.c:882)
+==26222==    by 0x30C9271631: _IO_file_xsgetn (fileops.c:1406)
+==26222==    by 0x30C9267461: fread (iofread.c:44)
+==26222==    by 0x400B82: Image_load (answer07.c:63)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222==  Address 0x4c3b318 is 8 bytes before a block of size 88 alloc'd
+==26222==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==26222==    by 0x400AC6: Image_load (answer07.c:51)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222== 
+--26222-- REDIR: 0x30c927f630 (index) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26222-- REDIR: 0x30c9328370 (__strchr_sse42) redirected to 0x4a07b40 (index)
+==26222== Invalid read of size 1
+==26222==    at 0x30C9328370: __strchr_sse42 (strchr.S:85)
+==26222==    by 0x400BAA: Image_load (answer07.c:68)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222==  Address 0x6e656720656c6946 is not stack'd, malloc'd or (recently) free'd
+==26222== 
+==26222== 
+==26222== Process terminating with default action of signal 11 (SIGSEGV)
+==26222==  General Protection Fault
+==26222==    at 0x30C9328370: __strchr_sse42 (strchr.S:85)
+==26222==    by 0x400BAA: Image_load (answer07.c:68)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222== 
+==26222== HEAP SUMMARY:
+==26222==     in use at exit: 780 bytes in 4 blocks
+==26222==   total heap usage: 4 allocs, 0 frees, 780 bytes allocated
+==26222== 
+==26222== Searching for pointers to 4 not-freed blocks
+==26222== Checked 69,272 bytes
+==26222== 
+==26222== 88 bytes in 1 blocks are definitely lost in loss record 2 of 4
+==26222==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==26222==    by 0x400AC6: Image_load (answer07.c:51)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222== 
+==26222== 100 bytes in 1 blocks are definitely lost in loss record 3 of 4
+==26222==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==26222==    by 0x400B23: Image_load (answer07.c:57)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222== 
+==26222== LEAK SUMMARY:
+==26222==    definitely lost: 188 bytes in 2 blocks
+==26222==    indirectly lost: 0 bytes in 0 blocks
+==26222==      possibly lost: 0 bytes in 0 blocks
+==26222==    still reachable: 592 bytes in 2 blocks
+==26222==         suppressed: 0 bytes in 0 blocks
+==26222== Reachable blocks (those to which a pointer was found) are not shown.
+==26222== To see them, rerun with: --leak-check=full --show-reachable=yes
+==26222== 
+==26222== ERROR SUMMARY: 12 errors from 4 contexts (suppressed: 6 from 6)
+==26222== 
+==26222== 1 errors in context 1 of 4:
+==26222== Invalid read of size 1
+==26222==    at 0x30C9328370: __strchr_sse42 (strchr.S:85)
+==26222==    by 0x400BAA: Image_load (answer07.c:68)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222==  Address 0x6e656720656c6946 is not stack'd, malloc'd or (recently) free'd
+==26222== 
+==26222== 
+==26222== 9 errors in context 2 of 4:
+==26222== Invalid write of size 8
+==26222==    at 0x4A08D53: memcpy (mc_replace_strmem.c:882)
+==26222==    by 0x30C9271631: _IO_file_xsgetn (fileops.c:1406)
+==26222==    by 0x30C9267461: fread (iofread.c:44)
+==26222==    by 0x400B82: Image_load (answer07.c:63)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222==  Address 0x4c3b318 is 8 bytes before a block of size 88 alloc'd
+==26222==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==26222==    by 0x400AC6: Image_load (answer07.c:51)
+==26222==    by 0x4018A0: main (<stdin>:61)
+==26222== 
+--26222-- 
+--26222-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--26222-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==26222== 
+==26222== ERROR SUMMARY: 12 errors from 4 contexts (suppressed: 6 from 6)

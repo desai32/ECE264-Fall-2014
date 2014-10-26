@@ -1,0 +1,20 @@
+
+/**
+ * Testcase 06 :: images/bmps/02-cat-chess.bmp 
+ * Test writing ee264 format
+ */
+Error attempting to write 'student-out-06_02-cat-chess.ee264'
+Attempt to read 'images/bmps/02-cat-chess.bmp' as .bmp format
+Printing BMP header information:
+  file type (should be 4d42): 4d42
+  file size: 202554
+  offset to image data: 54
+  header size: 40
+  width: 300
+  height: 225
+  planes: 1
+  bits: 24
+Success.
+Writing out 'student-out-06_02-cat-chess.ee264' in .ee264 format
+   Memory errors detected.
+   Valgrind log saved in output-tester/testcase-07.memcheck.log.

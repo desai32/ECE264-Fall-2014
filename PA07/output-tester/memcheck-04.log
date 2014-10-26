@@ -1,0 +1,76 @@
+==16405== Memcheck, a memory error detector
+==16405== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==16405== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==16405== Command: ./a.out images/bmps/05-unnormalized-sagan-stamp.bmp --normalize student-out-04_05-sagan-stamp.bmp
+==16405== Parent PID: 16404
+==16405== 
+--16405-- 
+--16405-- Valgrind options:
+--16405--    --tool=memcheck
+--16405--    --leak-check=full
+--16405--    --verbose
+--16405--    --log-file=memcheck-04.log
+--16405-- Contents of /proc/version:
+--16405--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--16405-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--16405-- Page sizes: currently 4096, max supported 4096
+--16405-- Valgrind library directory: /usr/lib64/valgrind
+--16405-- Reading syms from /tmp/.h3jkwG/a.out
+--16405-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--16405--    object doesn't have a dynamic symbol table
+--16405-- Reading syms from /lib64/ld-2.12.so
+--16405--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--16405--   .. build-id is valid
+--16405-- Scheduler: using generic scheduler lock implementation.
+--16405-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==16405== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-16405-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==16405== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-16405-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==16405== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-16405-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==16405== 
+==16405== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==16405== don't want to do, unless you know exactly what you're doing,
+==16405== or are doing some strange experiment):
+==16405==   /usr/lib64/valgrind/../../bin/vgdb --pid=16405 ...command...
+==16405== 
+==16405== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==16405==   /path/to/gdb ./a.out
+==16405== and then give GDB the following command
+==16405==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=16405
+==16405== --pid is optional if only one valgrind process is running
+==16405== 
+--16405-- REDIR: 0x398ac17610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--16405-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--16405-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--16405-- REDIR: 0x398ac17480 (index) redirected to 0x4a07c30 (index)
+--16405-- REDIR: 0x398ac17500 (strcmp) redirected to 0x4a08570 (strcmp)
+--16405-- Reading syms from /lib64/libc-2.12.so
+--16405--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--16405--   .. build-id is valid
+--16405-- REDIR: 0x398b084cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16405-- REDIR: 0x398b086f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16405-- REDIR: 0x398b082c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--16405-- REDIR: 0x398b07f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16405-- REDIR: 0x398b128420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--16405-- REDIR: 0x398b081120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16405-- REDIR: 0x398b1336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--16405-- REDIR: 0x398b08aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--16405-- REDIR: 0x398b084500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--16405-- REDIR: 0x398b07b520 (free) redirected to 0x4a063a9 (free)
+--16405-- REDIR: 0x398b07a640 (malloc) redirected to 0x4a069ac (malloc)
+--16405-- REDIR: 0x398b089670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--16405-- REDIR: 0x398b081160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--16405-- REDIR: 0x398b0839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16405-- REDIR: 0x398b0839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==16405== 
+==16405== HEAP SUMMARY:
+==16405==     in use at exit: 0 bytes in 0 blocks
+==16405==   total heap usage: 8 allocs, 8 frees, 310,298 bytes allocated
+==16405== 
+==16405== All heap blocks were freed -- no leaks are possible
+==16405== 
+==16405== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--16405-- 
+--16405-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--16405-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==16405== 
+==16405== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

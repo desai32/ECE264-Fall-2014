@@ -1,0 +1,76 @@
+==9897== Memcheck, a memory error detector
+==9897== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==9897== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==9897== Command: ./a.out images/bmps/01-unnormalized-smile.bmp --normalize student-out-00_01-smile.bmp
+==9897== Parent PID: 9896
+==9897== 
+--9897-- 
+--9897-- Valgrind options:
+--9897--    --tool=memcheck
+--9897--    --leak-check=full
+--9897--    --verbose
+--9897--    --log-file=memcheck-00.log
+--9897-- Contents of /proc/version:
+--9897--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--9897-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--9897-- Page sizes: currently 4096, max supported 4096
+--9897-- Valgrind library directory: /usr/lib64/valgrind
+--9897-- Reading syms from /tmp/.h3jkwG/a.out
+--9897-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--9897--    object doesn't have a dynamic symbol table
+--9897-- Reading syms from /lib64/ld-2.12.so
+--9897--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--9897--   .. build-id is valid
+--9897-- Scheduler: using generic scheduler lock implementation.
+--9897-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==9897== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-9897-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==9897== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-9897-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==9897== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-9897-by-desai32-on-ecegrid-thin5.ecn.purdue.edu
+==9897== 
+==9897== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==9897== don't want to do, unless you know exactly what you're doing,
+==9897== or are doing some strange experiment):
+==9897==   /usr/lib64/valgrind/../../bin/vgdb --pid=9897 ...command...
+==9897== 
+==9897== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==9897==   /path/to/gdb ./a.out
+==9897== and then give GDB the following command
+==9897==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=9897
+==9897== --pid is optional if only one valgrind process is running
+==9897== 
+--9897-- REDIR: 0x398ac17610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--9897-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--9897-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--9897-- REDIR: 0x398ac17480 (index) redirected to 0x4a07c30 (index)
+--9897-- REDIR: 0x398ac17500 (strcmp) redirected to 0x4a08570 (strcmp)
+--9897-- Reading syms from /lib64/libc-2.12.so
+--9897--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--9897--   .. build-id is valid
+--9897-- REDIR: 0x398b084cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--9897-- REDIR: 0x398b086f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--9897-- REDIR: 0x398b082c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--9897-- REDIR: 0x398b07f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--9897-- REDIR: 0x398b128420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--9897-- REDIR: 0x398b081120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--9897-- REDIR: 0x398b1336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--9897-- REDIR: 0x398b08aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--9897-- REDIR: 0x398b084500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--9897-- REDIR: 0x398b07b520 (free) redirected to 0x4a063a9 (free)
+--9897-- REDIR: 0x398b07a640 (malloc) redirected to 0x4a069ac (malloc)
+--9897-- REDIR: 0x398b089670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--9897-- REDIR: 0x398b081160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--9897-- REDIR: 0x398b0839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--9897-- REDIR: 0x398b0839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==9897== 
+==9897== HEAP SUMMARY:
+==9897==     in use at exit: 0 bytes in 0 blocks
+==9897==   total heap usage: 8 allocs, 8 frees, 269,819 bytes allocated
+==9897== 
+==9897== All heap blocks were freed -- no leaks are possible
+==9897== 
+==9897== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--9897-- 
+--9897-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--9897-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==9897== 
+==9897== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
