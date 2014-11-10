@@ -1,39 +1,37 @@
 #include "answer09.h"
+//Most of the code is very similar to Prof. Lu's textbook as it was used as reference.
+//I had a lot of help from the TA's to complete the explode function
 char * * explode(const char * str, const char * delims, int * arrLen);
 char * * explode(const char * str, const char * delims, int * arrLen)
 {
-int ind=0;
-    int last=0;
-    int len=0;
-    int arrInd=0;
-    *arrLen = 1;
-for(ind = 0; ind < strlen(str); ind++)
-    {
-        if (strchr(delims, str[ind]) != NULL)
-        {
-            (*arrLen)++;
-        }
-    }
-    char * * strArr = malloc(((*arrLen)) * sizeof(char *));
-    for(ind=0; ind < strlen(str); ind++)
-    {
-        if (strchr(delims, str[ind]) != NULL)
-        {
-            len = ind - last;
-            strArr[arrInd]=malloc((len+1)*sizeof(char));
-            memcpy(strArr[arrInd], &str[last], len);
-            strArr[arrInd][len]='\0';
-            arrInd++;
-            last=ind+1;
-        }
-    }
-len = ind - last;
-    strArr[arrInd]=malloc((len+1)*sizeof(char));
-    memcpy(strArr[arrInd], &str[last], len);
-    strArr[arrInd][len]='\0';
-    arrInd++;
-    last=ind+1;
-    return(strArr);
+int array_index;
+int last;
+int lcv;
+int length;
+array_index = 0;
+last = 0;
+lcv = 0;
+length = 0;
+char * * stringArr = malloc(sizeof(char *) * (*arrLen));
+for(lcv = 0; lcv < strlen(str); lcv++)
+{
+if (strchr(delims, str[lcv]) != NULL)
+{
+length = lcv - last;
+stringArr[array_index] = malloc(sizeof(char) * (length + 1));
+memcpy(stringArr[array_index], &str[last], length);
+stringArr[array_index][length] = '\0';
+array_index++;
+last = lcv + 1;
+}
+}
+length = lcv - last;
+stringArr[array_index] = malloc(sizeof(char) * (length + 1));
+memcpy(stringArr[array_index], &str[last], length);
+stringArr[array_index][length] = '\0';
+array_index++;
+last = lcv + 1;
+return (stringArr);
 }
 BusinessNode * create_node(char * stars, char * name, char * address)
 {
@@ -74,8 +72,8 @@ BusinessNode * node;
 //char * string3;
 FILE * fptr = fopen(filename, "rb");
 int length = 3;
-char ** stringarr;
-char * string = malloc(sizeof(char) * 2048);
+char * * stringarr;
+char * string = malloc(sizeof(char) * 2048); //2048 because TA told me to
 if (fptr == NULL)
 {
 free(string);
@@ -84,6 +82,9 @@ return NULL;
 while(fgets(string, 2048, fptr) != NULL)
 {
 stringarr = explode(string, "\t\t\0", &length);
+/*
+stringarr = malloc(3 * sizeof(int *));
+*/ 
 //string1 = strdup(stringarr[0]);
 //string2 = strdup(stringarr[1]);
 //string3 = strdup(stringarr[2]);
@@ -112,18 +113,17 @@ return root;
 if (strcmp(name, root->name) < 0)
 return tree_search_name(name, root->left);
 return tree_search_name(name, root->right);
-
 }
 
 void destroy_tree(BusinessNode * root)
-  {
-    if (root == NULL)
-       return;
-    destroy_tree(root->left);
-    destroy_tree(root->right);
-    free(root->name);
-    free(root->stars);
-    free(root->address);
-    free(root);
-  }
+{
+if (root == NULL)
+return;
+destroy_tree(root->left);
+destroy_tree(root->right);
+free(root->name);
+free(root->stars);
+free(root->address);
+free(root);
+}
 
