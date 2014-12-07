@@ -46,7 +46,17 @@ void BusLoc_destroy(BusinessLocation *);
 
 //void print_Locations(BusinessLocation * , const char*);
 
+BusinessLocation * list_create(BusinessLocation *, long, long, int);
+
 struct YelpDataBST * yelp_create(FILE *, FILE *, BusinessTree * );
+
+BusinessLocation * list_create(BusinessLocation * head , long offset1, long offset2, int num_rev)
+{
+	if (head == NULL)
+		return BusLoc_create(offset1, offset2, num_rev);
+	head -> next = list_create(head -> next, offset1, offset2, num_rev);
+	return head;
+}
 
 YelpData * yelp_create(FILE * rev_ptr, FILE * bus_ptr, BusinessTree * root)
 {
@@ -138,10 +148,13 @@ while (!feof(ptr))
 			}
 		free(string);
 	}
-	fclose(ptr);
+	//fclose(ptr);
+	//fclose(temp_ptr);
+	//fclose(rev_ptr);
 	free(buffer);
 
 	struct YelpDataBST * yelpdata = yelp_create(rev_ptr, ptr, root);
+	
 	return yelpdata;
 }
 
@@ -218,14 +231,14 @@ BusinessTree * BusTree_Insert(BusinessTree * root, char * name, long bus_offset,
 		{
 		return BusTree_create(name, bus_offset, rev_offset, num_rev);
 		}
-	if (strcmp(name, root -> name) < 0)
+	if (strcasecmp(name, root -> name) < 0)
 		{
 			root -> left = BusTree_Insert(root -> left, name, bus_offset, rev_offset, num_rev);
 			return root;
 		}
-	else if (strcmp(name, root -> name) == 0)
+	else if (strcasecmp(name, root -> name) == 0)
 		{
-			//root -> head = BusLoc_create(root -> head, bus_offset, rev_offset, num_rev);
+			root -> head = list_create(root -> head, bus_offset, rev_offset, num_rev);
 			return root;
 		}
 	else
@@ -254,9 +267,96 @@ void destroy_business_bst(struct YelpDataBST* bst)
 	return;
 }
 
+int Length_locList(BusinessLocation * BusLoc)
+{
+	BusinessLocation* temp = BusLoc;
+	int length = 0; // Length of the Location List
+
+	while(temp != NULL)
+	{
+		length += 1;
+		temp = temp -> next;		
+	}	
+	
+	return(length);
+}
+
+void search(BusinessTree* BusLoc,char* Businessname)
+{
+
+	if(BusLoc == NULL)
+	{
+		printf("No Business Found\n\n");
+		return;
+	}
+
+	if(strcasecmp(BusLoc -> name,Businessname) == 0)
+	{
+		printf("No.of Locations of the McDonald's %d\n", Length_locList(BusLoc -> head));
+		
+		return;		
+	}
+	
+	else if(strcasecmp(BusLoc -> name,Businessname) < 0)
+	{
+		search(BusLoc -> left,Businessname);
+	}
+	
+	else if(strcasecmp(BusLoc -> name,Businessname) > 0)
+	{
+		search(BusLoc -> right,Businessname);
+	}
+	
+	return;	
+}
+/*
 int main()
 {
-	YelpData * new = create_business_bst("bus.tsv", "reviews.tsv");
+	YelpData * new = create_business_bst("bus.tsv", "reviews.tsv"); ///home/shay/a/ece264p0/share/yelp_data/businesses.tsv", "/home/shay/a/ece264p0/share/yelp_data/reviews.tsv");
+	
+	search(new -> treenode,"Ruby's Diner");
+	
 	destroy_business_bst(new);
 	return EXIT_SUCCESS;
 }
+*/
+
+struct Business* get_business_reviews(struct YelpDataBST* bst, char* name, char* state, char* zip_code)
+{
+	/*
+	//FILE * busptr = fopen(bst -> bus, "r");
+	//FILE * revptr = fopen(bst -> reviews, "r");
+	struct Business * bus_get = reviews_get(bst -> business, bst -> reviews, bst -> treenode, name, state, zip_code);
+	//fclose(revptr);
+	//fclose(busptr);
+	return (bus_get);
+	*/
+return NULL;
+}
+/*
+struct Business * reviews_get(FILE *, FILE *, BusinessTree *, char *, char *, char *);
+struct Business * reviews_get(FILE * busptr, FILE * revptr, BusinessTree * tree, char * name, char * state, char * zip_code)
+{
+	int length = 0;
+	uint32_t size_list;
+	if (tree == NULL)
+		{
+			return NULL;
+		}
+	if (strcasecmp(name, tree -> name) > 0)
+		return (reviews_get(bustptr, revptr, tree -> right, name, state, zip_code));
+	if (strcasecmp(name, tree -> name) < 0)
+		return (reviews_get(busptr, revptr, tree -> left, name, state, zipcode));
+	else
+		struct Business * new_bus = malloc(sizeof(struct Business));
+		char * string1 = malloc(BUFSIZE * sizeof(char));
+		char * string2 = malloc(BUFSIZE * sizeof(char));
+		int ind = 100;
+		new_bus -> name = strdup(tree -> name);
+		BusinessLocation * second_bus = tree -> location;
+		size_list = length_list(second_bus);
+		new_bus -> num_locations = size_list;
+		new_bus -> locations = malloc(size_list * sizeof(struct BusinessLocation));
+		
+*/
+
